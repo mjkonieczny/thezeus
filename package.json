@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "postinstall": "lerna exec --concurrency 1 -- yarn",
+    "lint": "lerna run lint --parallel",
+    "test": "lerna run test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint"
+    }
+  },
+  "devDependencies": {
+    "husky": "^3.1.0",
+    "lerna": "^3.19.0"
+  },
+  "repository": "git@github.com:matthew-the-equine/thezeus.git",
+  "author": "equine <matthew.the.equine@gmail.com>",
+  "license": "MIT"
+}
