@@ -1,12 +1,12 @@
 {
   "scripts": {
-    "postinstall": "lerna exec --concurrency 1 -- yarn",
+    "postinstall": "lerna exec --concurrency 1 -- npm",
     "lint": "lerna run lint --parallel",
     "test": "lerna run test"
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint"
+      "pre-push": "npm run lint"
     }
   },
   "devDependencies": {

@@ -1,13 +1,11 @@
 {
   "name": "frontend",
-  "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
-    "build": "neutrino build",
-    "start": "neutrino start",
-    "lint": "neutrino lint",
-    "test": "neutrino test"
+    "test": "jest",
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production",
+    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -16,9 +14,14 @@
     "react-hot-loader": "^4.12.18"
   },
   "devDependencies": {
-    "@neutrinojs/airbnb": "^8.3.0",
-    "@neutrinojs/jest": "^8.3.0",
-    "@neutrinojs/react": "^8.3.0",
-    "neutrino": "^8.3.0"
+    "@neutrinojs/airbnb": "^9.0.0-rc.5",
+    "@neutrinojs/jest": "^9.0.0-rc.5",
+    "@neutrinojs/react": "^9.0.0-rc.5",
+    "eslint": "^6.7.0",
+    "jest": "^24.9.0",
+    "neutrino": "^9.0.0-rc.5",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
   }
 }
