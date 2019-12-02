@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "postinstall": "lerna exec --concurrency 1 -- npm",
+    "postinstall": "lerna exec --concurrency 1 -- npm i",
     "lint": "lerna run lint --parallel",
     "test": "lerna run test"
   },
