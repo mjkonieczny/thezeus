@@ -1,0 +1,21 @@
+{
+  "name": "backend",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "webpack --watch --mode development",
+    "build": "webpack --mode production",
+    "lint": "eslint --cache --format codeframe --ext mjs,js src test"
+  },
+  "module": "src/index.js",
+  "devDependencies": {
+    "@neutrinojs/airbnb-base": "^9.0.0-rc.5",
+    "@neutrinojs/mocha": "^9.0.0-rc.5",
+    "@neutrinojs/node": "^9.0.0-rc.5",
+    "eslint": "^6.7.2",
+    "mocha": "^6.2.2",
+    "neutrino": "^9.0.0-rc.5",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
