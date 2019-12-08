@@ -5,7 +5,7 @@
     "test": "jest",
     "start": "webpack-dev-server --host 0.0.0.0 --port 3000 --mode development --open",
     "build": "webpack --mode production",
-    "lint": "eslint --cache --fix --format codeframe --ext mjs,jsx,js src test"
+    "lint": "tsc --noEmit && eslint --cache --fix --format codeframe --ext js,jsx,ts,tsx ./src/**/*"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
@@ -14,12 +14,17 @@
     "react-hot-loader": "^4.12.18"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.7.4",
     "@neutrinojs/airbnb": "^9.0.0-rc.5",
     "@neutrinojs/jest": "^9.0.0-rc.5",
     "@neutrinojs/react": "^9.0.0-rc.5",
+    "@types/react": "^16.9.15",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
     "eslint": "^6.7.0",
     "jest": "^24.9.0",
     "neutrino": "^9.0.0-rc.5",
+    "typescript": "^3.7.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"

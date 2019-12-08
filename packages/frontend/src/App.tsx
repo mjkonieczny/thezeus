@@ -5,11 +5,11 @@ import './App.css';
 const App = () => {
   const [response, setResponse] = useState('no data');
   useEffect(() => {
-    fetch('http://localhost:3001/').then((res) => res.json()).then((value) => setResponse(value));
+    fetch('http://localhost:3001/').then((res) => res.json()).then((value) => setResponse(value.data));
   });
   return (
     <div className="App">
-      <span>{response.data}</span>
+      <span>{response}</span>
     </div>
   );
 };
