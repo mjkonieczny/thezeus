@@ -6,7 +6,7 @@ import app from './app';
 const port = process.env.PORT || 3000;
 
 const server = express()
-server.use(cors({ allowedHeaders: '*' }));
+server.use(cors({ allowedHeaders: '*' }))
 server.use(bodyParser.json())
 
 server.get('/', (req, res) => res.send(app()))

@@ -5,7 +5,7 @@
     "test": "jest",
     "start": "webpack-dev-server --host 0.0.0.0 --port 3000 --mode development --open",
     "build": "webpack --mode production",
-    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
+    "lint": "eslint --cache --fix --format codeframe --ext mjs,jsx,js src test"
   },
   "dependencies": {
     "prop-types": "^15.7.2",
