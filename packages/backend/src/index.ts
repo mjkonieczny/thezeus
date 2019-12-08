@@ -1,18 +1,31 @@
 import express from 'express';
+import  { ApolloServer, gql } from 'apollo-server-express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import app from './app';
 
 const port = process.env.PORT || 3000;
 
-const server = express()
-server.use(cors({ allowedHeaders: '*' }))
-server.use(bodyParser.json())
+const app = express()
+app.use(cors({ allowedHeaders: '*' }))
+app.use(bodyParser.json())
 
-server.get('/', (req, res) => res.send(app()))
+const typeDefs = gql`
+  type Query {
+    hello: String
+  }
+`;
 
-server.listen(port, () => process.stdout.write(`Running on :${port}\n`));
+const resolvers = {
+  Query: {
+    hello: () => 'Hello world!',
+  },
+};
 
-if (module.hot) {
-  module.hot.accept('./app');
-}
+const server = new ApolloServer({ typeDefs, resolvers });
+server.applyMiddleware({ app })
+
+app.listen(port, () => process.stdout.write(`Running on :${port} ${server.graphqlPath}\n`));
+
+// if (module.hot) {
+//   module.hot.accept('./app');
+// }

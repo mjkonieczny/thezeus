@@ -1,11 +1,18 @@
 import { hot } from 'react-hot-loader';
 import React, { useState, useEffect } from 'react';
+const { createApolloFetch } = require('apollo-fetch');
 import './App.css';
+
+const fetch = createApolloFetch({
+  uri: 'http://localhost:3001/graphql',
+});
 
 const App = () => {
   const [response, setResponse] = useState('no data');
   useEffect(() => {
-    fetch('http://localhost:3001/').then((res) => res.json()).then((value) => setResponse(value.data));
+    fetch({
+      query: '{ hello }'
+    }).then((value) => setResponse(value.data.hello));
   });
   return (
     <div className="App">
