@@ -11,14 +11,30 @@ const App = () => {
   const [response, setResponse] = useState([]);
   useEffect(() => {
     fetch({
-      query: '{ Vertex { name }}'
-    }).then(({ data: { Vertex }}: { data: { Vertex: any[] }}) => setResponse(Vertex));
+      query: `{
+        Vertex { 
+          name
+          vertices {
+            name
+          }
+        }
+      }`
+    }).then(({ data: { Vertex } }: { data: { Vertex: any[] } }) => setResponse(Vertex));
   }, []);
   return (
     <div className="App">
       {
         response.map(v => (
-          <span>{v.name}</span>
+          <div>
+            <span>{v.name}</span>
+            {
+              v.vertices.map((a: any) => (
+                <div>
+                  <span>Child { a.name }</span>
+                  </div>
+              ))
+            }
+          </div>
         ))
       }
     </div>

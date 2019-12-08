@@ -16,12 +16,13 @@ app.use(bodyParser.json())
 const typeDefs = `
   type Vertex {
     name: String
+    vertices: [Vertex] @relation(name: "Edge", direction: OUT)
   }
 `;
 
 const schema = makeAugmentedSchema({ typeDefs });
 
-const server = new ApolloServer({ schema, context: { driver } });
+const server = new ApolloServer({ schema, context: { driver }, playground: true });
 server.applyMiddleware({ app })
 
 app.listen(config.port, () => process.stdout.write(`Running on :${config.port} ${server.graphqlPath}\n`));
