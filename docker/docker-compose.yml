@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - '/app/node_modules'
+      - '../packages/frontend:/app'
     ports:
       - 3000:3000
 
@@ -17,5 +18,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - '/app/node_modules'
+      - '../packages/backend:/app'
     ports: 
       - 3001:3000
