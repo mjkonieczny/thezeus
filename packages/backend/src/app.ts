@@ -1,3 +1,5 @@
-const app = (): string => '<div style="padding: 20px"><h1>Welcome to backend</h1></div>';
+const app = (): any => ({
+  data: 'Test123'
+});
 
 export default app;
