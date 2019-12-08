@@ -1,31 +1,31 @@
 import express from 'express';
-import  { ApolloServer, gql } from 'apollo-server-express';
+import  { ApolloServer } from 'apollo-server-express';
+import neo4j from 'neo4j-driver';
+// @ts-ignore
+import { makeAugmentedSchema } from 'neo4j-graphql-js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import config from './config'
 
-const port = process.env.PORT || 3000;
+const driver = neo4j.driver(`${config.db.host}:${config.db.port}`, neo4j.auth.basic(config.db.username, config.db.password));
 
 const app = express()
 app.use(cors({ allowedHeaders: '*' }))
 app.use(bodyParser.json())
 
-const typeDefs = gql`
-  type Query {
-    hello: String
+const typeDefs = `
+  type Vertex {
+    name: String
   }
 `;
 
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!',
-  },
-};
+const schema = makeAugmentedSchema({ typeDefs });
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ schema, context: { driver } });
 server.applyMiddleware({ app })
 
-app.listen(port, () => process.stdout.write(`Running on :${port} ${server.graphqlPath}\n`));
+app.listen(config.port, () => process.stdout.write(`Running on :${config.port} ${server.graphqlPath}\n`));
 
-// if (module.hot) {
-//   module.hot.accept('./app');
-// }
+if (module.hot) {
+  module.hot.accept();
+}

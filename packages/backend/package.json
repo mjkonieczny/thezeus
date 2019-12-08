@@ -32,6 +32,8 @@
     "apollo-server-express": "^2.9.13",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "neo4j-driver": "^4.0.0",
+    "neo4j-graphql-js": "^2.10.0"
   }
 }

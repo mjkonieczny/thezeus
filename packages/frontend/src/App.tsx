@@ -8,15 +8,19 @@ const fetch = createApolloFetch({
 });
 
 const App = () => {
-  const [response, setResponse] = useState('no data');
+  const [response, setResponse] = useState([]);
   useEffect(() => {
     fetch({
-      query: '{ hello }'
-    }).then((value) => setResponse(value.data.hello));
-  });
+      query: '{ Vertex { name }}'
+    }).then(({ data: { Vertex }}: { data: { Vertex: any[] }}) => setResponse(Vertex));
+  }, []);
   return (
     <div className="App">
-      <span>{response}</span>
+      {
+        response.map(v => (
+          <span>{v.name}</span>
+        ))
+      }
     </div>
   );
 };
