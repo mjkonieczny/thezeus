@@ -2,6 +2,19 @@ version: '3.7'
 
 services:
 
+  db:
+    image: neo4j:3.4
+    ports:
+    - "7474:7474"
+    - "7687:7687"
+    volumes:
+      - ./volumes/db/plugins:/plugins
+      - ./volumes/db/data:/data
+      - ./volumes/db/import:/import
+    environment:
+      NEO4J_AUTH: ${DB_USERNAME}/${DB_PASSWORD}
+      NEO4J_dbms_logs_debug_level: DEBUG
+
   frontend:
     build:
       context: ../packages/frontend/
@@ -26,3 +39,5 @@ services:
       DB_PORT: ${DB_PORT}
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
+    links:
+     - db
