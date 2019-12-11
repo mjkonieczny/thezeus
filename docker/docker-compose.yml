@@ -20,4 +20,9 @@ services:
       - '/app/node_modules'
       - '../packages/backend:/app'
     ports: 
-      - 3001:3000
+      - 3001:3001
+    environment: 
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
