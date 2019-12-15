@@ -7,7 +7,7 @@ module.exports = {
     root: __dirname,
   },
   use: [
-    (neutrino) => neutrino.use(airbnbBase({
+    airbnbBase({
       eslint: {
         parser: '@typescript-eslint/parser',
         parserOptions: {
@@ -22,13 +22,13 @@ module.exports = {
           settings: {
             'import/resolver': {
               node: {
-                extensions: [".js", ".jsx", ".ts", ".tsx"],
+                extensions: [".js", ".ts" ],
               },
             },
           },
         },
       },
-    })),
+    }),
     node({
       babel: {
         presets: ['@babel/preset-typescript'],

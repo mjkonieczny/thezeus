@@ -40,7 +40,9 @@ module.exports = {
          ],
          "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
          "semi": ["error", "never"],
+         "arrow-parens": ["error", "as-needed"],
          "babel/semi": 0,
+         "react/prop-types": 0
         }
       },
     }),

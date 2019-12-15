@@ -1,31 +1,34 @@
 import React, { useState, useEffect, SFC } from 'react'
-import { createApolloFetch } from 'apollo-fetch'
+import ApolloClient, { gql } from 'apollo-boost'
 
+import VertexModel from '../../models'
 import VertexComponent from '../Vertex'
 
-const fetch = createApolloFetch({
+const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
 })
 
 const Root: SFC = () => {
   const [response, setResponse] = useState([])
   useEffect(() => {
-    fetch({
-      query: `{
+    client.query({
+      query: gql`{
         Vertex { 
           name
-          vertices {
+          adjacents {
             name
           }
         }
       }`,
-    }).then(({ data: { Vertex } }: { data: { Vertex: any[] } }) => setResponse(Vertex))
+    }).then(({ data: { Vertex } }: { data: { Vertex: VertexModel[] } }) => setResponse(Vertex))
   }, [])
 
   return (
     <>
       {
-        response.map(VertexComponent)
+        response.map(vertex => (
+          <VertexComponent vertex={vertex} />
+        ))
       }
     </>
   )

@@ -1,24 +1,29 @@
 import React, { SFC } from 'react'
+import VertexModel from '../../models'
 
-interface Vertex {
-  name: string;
-  vertices: Vertex[];
+interface VertexProps {
+  vertex: VertexModel;
 }
 
-const Vertex: SFC<Vertex> = (vertex: Vertex) => (
+const VertexComponent: SFC<VertexProps> = ({
+  vertex: {
+    name,
+    adjacents,
+  },
+}) => (
   <>
-    <span>{vertex.name}</span>
+    <span>{name}</span>
     {
-      vertex.vertices && vertex.vertices.map((v) => (
+      adjacents && adjacents.map(adjacent => (
         <div>
           <span>
-            {vertex.name}
+            {name}
           </span>
-          {Vertex(v)}
+          <VertexComponent vertex={adjacent} />
         </div>
       ))
     }
   </>
 )
 
-export default Vertex
+export default VertexComponent
