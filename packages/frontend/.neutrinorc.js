@@ -54,7 +54,9 @@ module.exports = {
         title: 'frontend'
       }
     }),
-    jest(),
+    jest({
+      'testRegex': '/__tests__/.*.test.tsx?$'
+    }),
     neutrino => {
       neutrino.config.resolve.extensions.add('.tsx');
       neutrino.config.resolve.extensions.add('.ts');
