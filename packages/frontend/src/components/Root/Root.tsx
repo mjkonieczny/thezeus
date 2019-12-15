@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { createApolloFetch } from 'apollo-fetch';
+import React, { useState, useEffect, SFC } from 'react'
+import { createApolloFetch } from 'apollo-fetch'
 
-import Vertex from '../Vertex'
+import VertexComponent from '../Vertex'
 
 const fetch = createApolloFetch({
   uri: 'http://localhost:3001/graphql',
-});
+})
 
-const Root = () => {
-  const [response, setResponse] = useState([]);
+const Root: SFC = () => {
+  const [response, setResponse] = useState([])
   useEffect(() => {
     fetch({
       query: `{
@@ -18,16 +18,14 @@ const Root = () => {
             name
           }
         }
-      }`
-    }).then(({ data: { Vertex } }: { data: { Vertex: any[] } }) => setResponse(Vertex));
-  }, []);
-
-  console.log(response)
+      }`,
+    }).then(({ data: { Vertex } }: { data: { Vertex: any[] } }) => setResponse(Vertex))
+  }, [])
 
   return (
     <>
       {
-        response.map(Vertex)
+        response.map(VertexComponent)
       }
     </>
   )
