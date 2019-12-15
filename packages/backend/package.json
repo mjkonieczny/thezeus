@@ -5,17 +5,37 @@
     "test": "mocha",
     "start": "webpack --watch --mode development",
     "build": "webpack --mode production",
-    "lint": "eslint --cache --format codeframe --ext mjs,js src test"
+    "lint": "tsc --noEmit && eslint --cache --format codeframe --ext ts src/**/*"
   },
   "module": "src/index.js",
   "devDependencies": {
+    "@babel/preset-typescript": "^7.7.4",
     "@neutrinojs/airbnb-base": "^9.0.0-rc.5",
     "@neutrinojs/mocha": "^9.0.0-rc.5",
     "@neutrinojs/node": "^9.0.0-rc.5",
+    "@types/body-parser": "^1.17.1",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.2",
+    "@types/mocha": "^5.2.7",
+    "@types/node-fetch": "^2.5.4",
+    "@types/webpack-env": "^1.14.1",
+    "@typescript-eslint/eslint-plugin": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
     "eslint": "^6.7.2",
+    "eslint-plugin-babel": "^5.3.0",
     "mocha": "^6.2.2",
     "neutrino": "^9.0.0-rc.5",
+    "serialize-javascript": "^2.1.2",
+    "typescript": "^3.7.3",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.9.13",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "neo4j-driver": "^4.0.0",
+    "neo4j-graphql-js": "^2.10.0"
   }
 }

@@ -2,11 +2,42 @@ version: '3.7'
 
 services:
 
+  db:
+    image: neo4j:3.4
+    ports:
+    - "7474:7474"
+    - "7687:7687"
+    volumes:
+      - ./volumes/db/plugins:/plugins
+      - ./volumes/db/data:/data
+      - ./volumes/db/import:/import
+    environment:
+      NEO4J_AUTH: ${DB_USERNAME}/${DB_PASSWORD}
+      NEO4J_dbms_logs_debug_level: DEBUG
+
   frontend:
     build:
       context: ../packages/frontend/
       dockerfile: Dockerfile
     volumes:
       - '/app/node_modules'
+      - '../packages/frontend:/app'
     ports:
       - 3000:3000
+
+  backend:
+    build:
+      context: ../packages/backend/
+      dockerfile: Dockerfile
+    volumes:
+      - '/app/node_modules'
+      - '../packages/backend:/app'
+    ports: 
+      - 3001:3001
+    environment: 
+      DB_HOST: bolt://db
+      DB_PORT: 7687
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+     - db
