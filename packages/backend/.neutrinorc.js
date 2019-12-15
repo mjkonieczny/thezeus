@@ -27,6 +27,11 @@ module.exports = {
             },
           },
         },
+        "rules": {
+          "semi": ["error", "never"],
+          "arrow-parens": ["error", "as-needed"],
+          "babel/semi": 0,
+        }
       },
     }),
     node({
