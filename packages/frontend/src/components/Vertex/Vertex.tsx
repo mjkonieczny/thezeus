@@ -15,7 +15,7 @@ const VertexComponent: SFC<VertexProps> = ({
     <span>{name}</span>
     {
       adjacents && adjacents.map(adjacent => (
-        <div>
+        <div key={adjacent.name}>
           <span>
             {name}
           </span>

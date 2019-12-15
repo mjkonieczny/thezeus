@@ -1,33 +1,32 @@
-import React, { useState, useEffect, SFC } from 'react'
-import ApolloClient, { gql } from 'apollo-boost'
+import React, { SFC } from 'react'
+import { useQuery } from '@apollo/react-hooks'
+import { gql } from 'apollo-boost'
 
 import VertexModel from '../../models'
 import VertexComponent from '../Vertex'
 
-const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
-})
+const VERTEX = gql`
+  {
+    Vertex { 
+      name
+      adjacents {
+        name
+      }
+    }
+  }
+`
 
 const Root: SFC = () => {
-  const [response, setResponse] = useState([])
-  useEffect(() => {
-    client.query({
-      query: gql`{
-        Vertex { 
-          name
-          adjacents {
-            name
-          }
-        }
-      }`,
-    }).then(({ data: { Vertex } }: { data: { Vertex: VertexModel[] } }) => setResponse(Vertex))
-  }, [])
+  const { loading, error, data } = useQuery(VERTEX)
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error :</p>
 
   return (
     <>
       {
-        response.map(vertex => (
-          <VertexComponent vertex={vertex} />
+        data.Vertex.map((vertex: VertexModel) => (
+          <VertexComponent key={vertex.name} vertex={vertex} />
         ))
       }
     </>

@@ -1,13 +1,18 @@
 import { hot } from 'react-hot-loader'
 import React, { SFC } from 'react'
-import './App.css'
+import { ApolloProvider } from '@apollo/react-hooks'
+import ApolloClient from 'apollo-boost'
 
 import Root from './components/Root'
 
+const client = new ApolloClient({
+  uri: 'http://localhost:3001/graphql',
+})
+
 const App: SFC = () => (
-  <div className="App">
+  <ApolloProvider client={client}>
     <Root />
-  </div>
+  </ApolloProvider>
 )
 
 export default hot(module)(App)
