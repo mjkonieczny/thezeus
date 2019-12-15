@@ -5,7 +5,7 @@
     "test": "jest",
     "start": "webpack --watch --mode development",
     "build": "webpack --mode production",
-    "lint": "tsc --noEmit && eslint --cache --format codeframe --ext ts src/**/*"
+    "lint": "tsc --noEmit && eslint --cache --fix --format codeframe --ext ts src/**/*"
   },
   "module": "src/index.js",
   "devDependencies": {
