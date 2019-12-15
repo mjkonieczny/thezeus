@@ -1,6 +1,6 @@
 const airbnbBase = require('@neutrinojs/airbnb-base');
 const node = require('@neutrinojs/node');
-const mocha = require('@neutrinojs/mocha');
+const jest = require('@neutrinojs/jest');
 
 module.exports = {
   options: {
@@ -27,6 +27,11 @@ module.exports = {
             },
           },
         },
+        "rules": {
+          "semi": ["error", "never"],
+          "arrow-parens": ["error", "as-needed"],
+          "babel/semi": 0,
+        }
       },
     }),
     node({
@@ -34,7 +39,9 @@ module.exports = {
         presets: ['@babel/preset-typescript'],
       }
     }),
-    mocha(),
+    jest({
+      'testRegex': '/__tests__/.*.test.ts$'
+    }),
     neutrino => {
       neutrino.config.resolve.extensions.add('.tsx');
       neutrino.config.resolve.extensions.add('.ts');
