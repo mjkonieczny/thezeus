@@ -9,9 +9,30 @@ const CREATE_VERTEX = gql`
   }
 `
 
-const CREATE_EDGE = gql`
-  mutation CreateEdge($from: String!, $to: String!) {
+const DELETE_VERTEX = gql`
+  mutation DeleteVertex($name: String!) {
+    DeleteVertex(name: $name) {
+      name
+    }
+  }
+`
+
+const ADD_EDGE = gql`
+  mutation AddEdge($from: String!, $to: String!) {
     AddVertexAdjacents(from: { name: $from }, to: { name: $to }) {
+      from {
+        name
+      }
+      to {
+        name
+      }
+    }
+  }
+`
+
+const REMOVE_EDGE = gql`
+  mutation RemoveEdge($from: String!, $to: String!) {
+    RemoveVertexAdjacents(from: { name: $from }, to: { name: $to }) {
       from {
         name
       }
@@ -24,17 +45,25 @@ const CREATE_EDGE = gql`
 
 const useInterpreter = (): (_: string) => void => {
   const [createVertex] = useMutation(CREATE_VERTEX)
-  const [createEdge] = useMutation(CREATE_EDGE)
+  const [deleteVertex] = useMutation(DELETE_VERTEX)
+  const [addEdge] = useMutation(ADD_EDGE)
+  const [removeEdge] = useMutation(REMOVE_EDGE)
 
   return (value: string) => {
     const [command, first, second] = value.split(' ')
 
     switch (command) {
-      case 'v':
+      case 'cv':
         createVertex({ variables: { name: first } })
         break
-      case 'e':
-        createEdge({ variables: { from: first, to: second } })
+      case 'dv':
+        deleteVertex({ variables: { name: first } })
+        break
+      case 'ae':
+        addEdge({ variables: { from: first, to: second } })
+        break
+      case 're':
+        removeEdge({ variables: { from: first, to: second } })
         break
 
       default:
