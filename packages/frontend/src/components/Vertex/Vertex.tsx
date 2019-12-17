@@ -5,25 +5,20 @@ interface VertexProps {
   vertex: VertexModel;
 }
 
-const VertexComponent: SFC<VertexProps> = ({
+const Vertex: SFC<VertexProps> = ({
   vertex: {
     name,
     adjacents,
   },
 }) => (
-  <>
+  <div style={{ marginLeft: '20px' }}>
     <span>{name}</span>
     {
       adjacents && adjacents.map(adjacent => (
-        <div key={adjacent.name}>
-          <span>
-            {name}
-          </span>
-          <VertexComponent vertex={adjacent} />
-        </div>
+        <Vertex key={adjacent.name} vertex={adjacent} />
       ))
     }
-  </>
+  </div>
 )
 
-export default VertexComponent
+export default Vertex

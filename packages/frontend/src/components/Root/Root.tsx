@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 
 import VertexModel from '../../models'
-import VertexComponent from '../Vertex'
+import Vertex from '../Vertex'
 
 const VERTEX = gql`
   {
@@ -26,7 +26,7 @@ const Root: SFC = () => {
     <>
       {
         data.Vertex.map((vertex: VertexModel) => (
-          <VertexComponent key={vertex.name} vertex={vertex} />
+          <Vertex key={vertex.name} vertex={vertex} />
         ))
       }
     </>
