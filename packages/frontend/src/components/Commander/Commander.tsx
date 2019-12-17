@@ -1,26 +1,17 @@
 import React, {
   SFC, useState, ChangeEvent, FormEvent,
 } from 'react'
-import { gql } from 'apollo-boost'
-import { useMutation } from '@apollo/react-hooks'
-
-const CREATE_VERTEX = gql`
-  mutation CreateVertex($name: String!) {
-    CreateVertex(name: $name) {
-      name
-    }
-  }
-`
+import useInterpreter from '../../hooks/interpreter'
 
 const Commander: SFC = () => {
   const [value, setValue] = useState('')
-  const [createVertex] = useMutation(CREATE_VERTEX)
+  const interpreter = useInterpreter()
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => setValue(event.target.value)
 
   const onSubmit = (event: FormEvent): void => {
     event.preventDefault()
-    createVertex({ variables: { name: value } })
+    interpreter(value)
     setValue('')
   }
 
