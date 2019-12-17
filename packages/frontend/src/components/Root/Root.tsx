@@ -7,7 +7,7 @@ import VertexComponent from '../Vertex'
 
 const VERTEX = gql`
   {
-    Vertex { 
+    Vertex {
       name
       adjacents {
         name
