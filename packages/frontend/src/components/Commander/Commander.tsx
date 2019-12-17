@@ -1,4 +1,6 @@
-import React, { SFC, useState, KeyboardEvent, ChangeEvent, FormEvent } from 'react'
+import React, {
+  SFC, useState, ChangeEvent, FormEvent,
+} from 'react'
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 
@@ -14,9 +16,9 @@ const Commander: SFC = () => {
   const [value, setValue] = useState('')
   const [createVertex] = useMutation(CREATE_VERTEX)
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => setValue(event.target.value)
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => setValue(event.target.value)
 
-  const onSubmit = (event: FormEvent) => {
+  const onSubmit = (event: FormEvent): void => {
     event.preventDefault()
     createVertex({ variables: { name: value } })
     setValue('')
