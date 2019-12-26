@@ -5,7 +5,7 @@ const config = {
     port: process.env.DB_PORT || '7687',
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-  }
+  },
 }
 
 export type Config = typeof config

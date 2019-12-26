@@ -28,6 +28,16 @@ module.exports = {
           },
         },
         "rules": {
+          "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+              "js": "never",
+              "jsx": "never",
+              "ts": "never",
+              "tsx": "never"
+            }
+          ],
           "semi": ["error", "never"],
           "arrow-parens": ["error", "as-needed"],
           "babel/semi": 0,
