@@ -1,6 +1,6 @@
 import React, { SFC } from 'react'
 import { useSelector } from 'react-redux'
-import { useQuery } from '@apollo/react-hooks'
+import { Query } from 'react-apollo'
 import { gql } from 'apollo-boost'
 
 import VertexModel from '../../models'
@@ -19,25 +19,33 @@ const VERTEX = gql`
   }
 `
 
-const Root: SFC = () => {
-  const { loading, error, data } = useQuery(VERTEX, {
-    variables: {
-      vertex: useSelector(vertexSelector),
-    },
-  })
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :</p>
-
-  return (
-    <>
-      {
-        data.Vertex.map((vertex: VertexModel) => (
-          <Vertex key={vertex.name} vertex={vertex} />
-        ))
-      }
-    </>
-  )
+interface Params {
+  vertex: string;
 }
+
+interface Data {
+  Vertex: VertexModel[];
+}
+
+const Root: SFC = () => (
+  <Query<Data, Params> query={VERTEX} variables={{ vertex: useSelector(vertexSelector) }}>
+    {
+      ({ loading, error, data }) => {
+        if (loading) return <p>Loading...</p>
+        if (error) return <p>Error :</p>
+
+        return (
+          <>
+            {
+              data.Vertex.map((vertex: VertexModel) => (
+                <Vertex key={vertex.name} vertex={vertex} />
+              ))
+            }
+          </>
+        )
+      }
+    }
+  </Query>
+)
 
 export default Root
