@@ -41,6 +41,7 @@ module.exports = {
           "semi": ["error", "never"],
           "arrow-parens": ["error", "as-needed"],
           "babel/semi": 0,
+          "@typescript-eslint/ban-ts-ignore": 0,
         }
       },
     }),

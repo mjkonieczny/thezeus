@@ -44,6 +44,7 @@ module.exports = {
           "babel/semi": 0,
           "react/prop-types": 0,
           "@typescript-eslint/explicit-function-return-type": [2, { "allowExpressions": true }],
+          "@typescript-eslint/ban-ts-ignore": 0,
           "import/prefer-default-export": 0,
         }
       },
