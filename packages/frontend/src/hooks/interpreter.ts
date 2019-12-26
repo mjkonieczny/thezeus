@@ -1,5 +1,7 @@
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
+import { useDispatch } from 'react-redux'
+import { searchVertex } from '../store/vertex/actions'
 
 const CREATE_VERTEX = gql`
   mutation CreateVertex($name: String!) {
@@ -49,6 +51,8 @@ const useInterpreter = (): (_: string) => void => {
   const [addEdge] = useMutation(ADD_EDGE)
   const [removeEdge] = useMutation(REMOVE_EDGE)
 
+  const dispatch = useDispatch()
+
   return (value: string) => {
     const [command, first, second] = value.split(' ')
 
@@ -64,6 +68,9 @@ const useInterpreter = (): (_: string) => void => {
         break
       case 're':
         removeEdge({ variables: { from: first, to: second } })
+        break
+      case 's':
+        dispatch(searchVertex(first))
         break
 
       default:

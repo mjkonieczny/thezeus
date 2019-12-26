@@ -43,7 +43,8 @@ module.exports = {
           "arrow-parens": ["error", "as-needed"],
           "babel/semi": 0,
           "react/prop-types": 0,
-          "@typescript-eslint/explicit-function-return-type": [2, { "allowExpressions": true }]
+          "@typescript-eslint/explicit-function-return-type": [2, { "allowExpressions": true }],
+          "import/prefer-default-export": 0,
         }
       },
     }),

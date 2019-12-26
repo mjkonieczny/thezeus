@@ -1,20 +1,28 @@
 import { hot } from 'react-hot-loader'
 import React, { SFC } from 'react'
+
 import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
 
+import { Provider } from 'react-redux'
+import createStore from './store'
+
 import Root from './components/Root'
 import Commander from './components/Commander'
+
+const store = createStore()
 
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
 })
 
 const App: SFC = () => (
-  <ApolloProvider client={client}>
-    <Root />
-    <Commander />
-  </ApolloProvider>
+  <Provider store={store}>
+    <ApolloProvider client={client}>
+      <Root />
+      <Commander />
+    </ApolloProvider>
+  </Provider>
 )
 
 export default hot(module)(App)
