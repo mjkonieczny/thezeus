@@ -1,24 +1,13 @@
 import React, { SFC } from 'react'
 import { useSelector } from 'react-redux'
 import { Query } from 'react-apollo'
-import { gql } from 'apollo-boost'
 
 import Set from '../../models'
 import SetInfo from '../Set'
-
 import { setNameSelector } from '../../store/set'
 
-const SET = gql`
-  query Set($name: String!) {
-    Set(name: $name) {
-      name
-      description
-      subsets {
-        name
-      }
-    }
-  }
-`
+// @ts-ignore
+import { Set as SetQuery } from '../../schema/set.graphql'
 
 interface Params {
   name: string;
@@ -29,7 +18,7 @@ interface Data {
 }
 
 const Root: SFC = () => (
-  <Query<Data, Params> query={SET} variables={{ name: useSelector(setNameSelector) }}>
+  <Query<Data, Params> query={SetQuery} variables={{ name: useSelector(setNameSelector) }}>
     {
       ({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>

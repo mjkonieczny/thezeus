@@ -1,55 +1,20 @@
-import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 import { useDispatch } from 'react-redux'
 import { searchSet } from '../store/set/actions'
 
-const CREATE_SET = gql`
-  mutation CreateSet($name: String!) {
-    CreateSet(name: $name) {
-      name
-    }
-  }
-`
-
-const DELETE_SET = gql`
-  mutation DeleteSet($name: String!) {
-    DeleteSet(name: $name) {
-      name
-    }
-  }
-`
-
-const ADD_SUBSET = gql`
-  mutation AddSubset($from: String!, $to: String!) {
-    AddSetSubsets(from: { name: $from }, to: { name: $to }) {
-      from {
-        name
-      }
-      to {
-        name
-      }
-    }
-  }
-`
-
-const REMOVE_SUBSET = gql`
-  mutation RemoveSubset($from: String!, $to: String!) {
-    RemoveSetSubsets(from: { name: $from }, to: { name: $to }) {
-      from {
-        name
-      }
-      to {
-        name
-      }
-    }
-  }
-`
+import {
+  CreateSet,
+  DeleteSet,
+  AddSubset,
+  RemoveSubset,
+// @ts-ignore
+} from '../schema/set.graphql'
 
 const useInterpreter = (): (_: string) => void => {
-  const [createSet] = useMutation(CREATE_SET)
-  const [deleteSet] = useMutation(DELETE_SET)
-  const [addSubset] = useMutation(ADD_SUBSET)
-  const [removeSubset] = useMutation(REMOVE_SUBSET)
+  const [createSet] = useMutation(CreateSet)
+  const [deleteSet] = useMutation(DeleteSet)
+  const [addSubset] = useMutation(AddSubset)
+  const [removeSubset] = useMutation(RemoveSubset)
 
   const dispatch = useDispatch()
 

@@ -66,5 +66,12 @@ module.exports = {
       neutrino.config.module.rule('compile')
         .test(/\.(wasm|mjs|jsx|js|tsx|ts)$/);
     },
+    neutrino => {
+      neutrino.config.resolve.extensions.add('.graphql')
+      neutrino.config.module.rule('graphql')
+        .test(/\.(graphql|gql)$/)
+        .use('file')
+        .loader(require.resolve('graphql-tag/loader'))
+    }
   ],
 };

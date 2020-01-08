@@ -1,0 +1,43 @@
+query Set($name: String!) {
+  Set(name: $name) {
+    name
+    description
+    subsets {
+      name
+    }
+  }
+}
+
+mutation CreateSet($name: String!) {
+  CreateSet(name: $name) {
+    name
+  }
+}
+
+mutation DeleteSet($name: String!) {
+  DeleteSet(name: $name) {
+    name
+  }
+}
+
+mutation AddSubset($from: String!, $to: String!) {
+  AddSetSubsets(from: { name: $from }, to: { name: $to }) {
+    from {
+      name
+    }
+    to {
+      name
+    }
+  }
+}
+
+mutation RemoveSubset($from: String!, $to: String!) {
+  RemoveSetSubsets(from: { name: $from }, to: { name: $to }) {
+    from {
+      name
+    }
+    to {
+      name
+    }
+  }
+}
