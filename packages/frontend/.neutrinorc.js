@@ -13,7 +13,10 @@ module.exports = {
         parserOptions: {
           project: './tsconfig.json',
         },
-        plugins: ['@typescript-eslint'],
+        plugins: [
+          '@typescript-eslint',
+          'graphql'
+        ],
         baseConfig: {
           extends: [
             'plugin:@typescript-eslint/eslint-recommended',
@@ -67,7 +70,6 @@ module.exports = {
         .test(/\.(wasm|mjs|jsx|js|tsx|ts)$/);
     },
     neutrino => {
-      neutrino.config.resolve.extensions.add('.graphql')
       neutrino.config.module.rule('graphql')
         .test(/\.(graphql|gql)$/)
         .use('file')
