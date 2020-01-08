@@ -1,9 +1,11 @@
-import { createStore, compose, combineReducers } from 'redux'
-import vertexReducer from './vertex/reducer'
+import {
+  createStore, compose, combineReducers, Store,
+} from 'redux'
+import setReducer from './set/reducer'
 
-export default (): any => {
+export default (): Store => {
   const reducer = combineReducers({
-    vertex: vertexReducer,
+    set: setReducer,
   })
 
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

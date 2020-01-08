@@ -1,4 +1,4 @@
-import { VertexState } from './vertex/reducer'
+import { SetState } from './set/reducer'
 
 export interface SimpleAction {
   type: string;
@@ -9,5 +9,5 @@ export interface Action<Payload> extends SimpleAction {
 }
 
 export interface State {
-  vertex: VertexState;
+  set: SetState;
 }

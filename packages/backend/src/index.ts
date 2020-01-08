@@ -14,9 +14,10 @@ app.use(cors({ allowedHeaders: '*' }))
 app.use(bodyParser.json())
 
 const typeDefs = `
-  type Vertex {
-    name: String
-    adjacents: [Vertex] @relation(name: "Edge", direction: OUT)
+  type Set {
+    name: String!
+    description: String
+    subsets: [Set] @relation(name: "HAS_SUBSET", direction: OUT)
   }
 `
 

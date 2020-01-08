@@ -1,27 +1,27 @@
 import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 import { useDispatch } from 'react-redux'
-import { searchVertex } from '../store/vertex/actions'
+import { searchSet } from '../store/set/actions'
 
-const CREATE_VERTEX = gql`
-  mutation CreateVertex($name: String!) {
-    CreateVertex(name: $name) {
+const CREATE_SET = gql`
+  mutation CreateSet($name: String!) {
+    CreateSet(name: $name) {
       name
     }
   }
 `
 
-const DELETE_VERTEX = gql`
-  mutation DeleteVertex($name: String!) {
-    DeleteVertex(name: $name) {
+const DELETE_SET = gql`
+  mutation DeleteSet($name: String!) {
+    DeleteSet(name: $name) {
       name
     }
   }
 `
 
-const ADD_EDGE = gql`
-  mutation AddEdge($from: String!, $to: String!) {
-    AddVertexAdjacents(from: { name: $from }, to: { name: $to }) {
+const ADD_SUBSET = gql`
+  mutation AddSubset($from: String!, $to: String!) {
+    AddSetSubsets(from: { name: $from }, to: { name: $to }) {
       from {
         name
       }
@@ -32,9 +32,9 @@ const ADD_EDGE = gql`
   }
 `
 
-const REMOVE_EDGE = gql`
-  mutation RemoveEdge($from: String!, $to: String!) {
-    RemoveVertexAdjacents(from: { name: $from }, to: { name: $to }) {
+const REMOVE_SUBSET = gql`
+  mutation RemoveSubset($from: String!, $to: String!) {
+    RemoveSetSubsets(from: { name: $from }, to: { name: $to }) {
       from {
         name
       }
@@ -46,10 +46,10 @@ const REMOVE_EDGE = gql`
 `
 
 const useInterpreter = (): (_: string) => void => {
-  const [createVertex] = useMutation(CREATE_VERTEX)
-  const [deleteVertex] = useMutation(DELETE_VERTEX)
-  const [addEdge] = useMutation(ADD_EDGE)
-  const [removeEdge] = useMutation(REMOVE_EDGE)
+  const [createSet] = useMutation(CREATE_SET)
+  const [deleteSet] = useMutation(DELETE_SET)
+  const [addSubset] = useMutation(ADD_SUBSET)
+  const [removeSubset] = useMutation(REMOVE_SUBSET)
 
   const dispatch = useDispatch()
 
@@ -58,19 +58,19 @@ const useInterpreter = (): (_: string) => void => {
 
     switch (command) {
       case 'cv':
-        createVertex({ variables: { name: first } })
+        createSet({ variables: { name: first } })
         break
       case 'dv':
-        deleteVertex({ variables: { name: first } })
+        deleteSet({ variables: { name: first } })
         break
       case 'ae':
-        addEdge({ variables: { from: first, to: second } })
+        addSubset({ variables: { from: first, to: second } })
         break
       case 're':
-        removeEdge({ variables: { from: first, to: second } })
+        removeSubset({ variables: { from: first, to: second } })
         break
       case 's':
-        dispatch(searchVertex(first))
+        dispatch(searchSet(first))
         break
 
       default:
