@@ -7,14 +7,22 @@ import {
   DeleteSet,
   AddSubset,
   RemoveSubset,
-// @ts-ignore
+  AddNote,
+  // @ts-ignore
 } from '../schema/set.graphql'
+
+import {
+  CreateNote,
+  // @ts-ignore
+} from '../schema/note.graphql'
 
 const useInterpreter = (): (_: string) => void => {
   const [createSet] = useMutation(CreateSet)
   const [deleteSet] = useMutation(DeleteSet)
   const [addSubset] = useMutation(AddSubset)
   const [removeSubset] = useMutation(RemoveSubset)
+  const [createNote] = useMutation(CreateNote)
+  const [addNote] = useMutation(AddNote)
 
   const dispatch = useDispatch()
 
@@ -33,6 +41,12 @@ const useInterpreter = (): (_: string) => void => {
         break
       case 're':
         removeSubset({ variables: { from: first, to: second } })
+        break
+      case 'cn':
+        createNote({ variables: { name: first } })
+        break
+      case 'an':
+        addNote({ variables: { from: first, to: second } })
         break
       case 's':
         dispatch(searchSet(first))

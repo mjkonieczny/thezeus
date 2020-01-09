@@ -1,0 +1,5 @@
+mutation CreateNote($name: String!) {
+  CreateNote(name: $name) {
+    name
+  }
+}

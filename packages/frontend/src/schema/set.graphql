@@ -5,6 +5,9 @@ query Set($name: String!) {
     subsets {
       name
     }
+    notes {
+      name
+    }
   }
 }
 
@@ -33,6 +36,17 @@ mutation AddSubset($from: String!, $to: String!) {
 
 mutation RemoveSubset($from: String!, $to: String!) {
   RemoveSetSubsets(from: { name: $from }, to: { name: $to }) {
+    from {
+      name
+    }
+    to {
+      name
+    }
+  }
+}
+
+mutation AddNote($from: String!, $to: String!) {
+  AddSetNotes(from: { name: $from }, to: { name: $to }) {
     from {
       name
     }

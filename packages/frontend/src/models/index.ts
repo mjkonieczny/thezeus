@@ -1,1 +1,2 @@
-export { default } from './Set'
+export * from './Set'
+export * from './Note'

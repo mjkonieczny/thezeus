@@ -17,7 +17,14 @@ const typeDefs = `
   type Set {
     name: String!
     description: String
-    subsets: [Set] @relation(name: "HAS_SUBSET", direction: OUT)
+
+    subsets: [Set] @relation(name: "IS_SUBSET_OF", direction: IN)
+    notes: [Note] @relation(name: "DESCRIBES", direction: IN)
+  }
+
+  type Note {
+    name: String!
+    text: String
   }
 `
 

@@ -2,7 +2,7 @@ import React, { SFC } from 'react'
 import { useSelector } from 'react-redux'
 import { Query } from 'react-apollo'
 
-import Set from '../../models'
+import { Set } from '../../models'
 import SetInfo from '../Set'
 import { setNameSelector } from '../../store/set'
 
