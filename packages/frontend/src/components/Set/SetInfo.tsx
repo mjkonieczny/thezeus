@@ -2,6 +2,8 @@ import React, { SFC } from 'react'
 import { Set } from '../../models'
 import NoteInfo from '../Note/NoteInfo'
 
+import styles from './setInfo.module.scss'
+
 interface SetInfoProps {
   set: Set;
 }
@@ -14,7 +16,7 @@ const SetInfo: SFC<SetInfoProps> = ({
     notes,
   },
 }) => (
-  <div style={{ marginLeft: '20px' }}>
+  <div className={styles.setInfo}>
     <span>{name}</span>
     <span>{description}</span>
     {

@@ -1,7 +1,4 @@
-import { compose } from 'redux'
-
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
+declare module '*.scss' {
+  const content: {[className: string]: string}
+  export default content
 }

@@ -58,6 +58,21 @@ module.exports = {
       },
       html: {
         title: 'frontend'
+      },
+      style: {
+        test: /\.scss$/,
+        modulesTest: /\.module\.scss$/,
+        loaders: [
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                require('autoprefixer')
+              ]
+            }
+          },
+          { loader: 'sass-loader', useId: 'sass' }
+        ]
       }
     }),
     jest({

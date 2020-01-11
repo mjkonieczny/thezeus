@@ -3,6 +3,12 @@ import {
 } from 'redux'
 import setReducer from './set/reducer'
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
 export default (): Store => {
   const reducer = combineReducers({
     set: setReducer,
