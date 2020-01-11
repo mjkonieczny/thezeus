@@ -1,6 +1,6 @@
 import React, { SFC } from 'react'
 import { Set } from '../../models'
-import NoteInfo from '../Note/NoteInfo'
+import NoteInfo from '../Note'
 
 import styles from './setInfo.module.scss'
 
@@ -17,7 +17,7 @@ const SetInfo: SFC<SetInfoProps> = ({
   },
 }) => (
   <div className={styles.setInfo}>
-    <span>{name}</span>
+    <span className={styles.name}>{name}</span>
     <span>{description}</span>
     {
       subsets && subsets.map(subset => (
