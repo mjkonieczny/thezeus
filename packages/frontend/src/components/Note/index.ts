@@ -1,1 +1,1 @@
-export { default } from './NoteInfo'
+export { default } from './NoteComponent'

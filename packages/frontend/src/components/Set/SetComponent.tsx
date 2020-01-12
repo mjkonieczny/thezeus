@@ -1,14 +1,14 @@
 import React, { SFC } from 'react'
 import { Set } from '../../models'
-import NoteInfo from '../Note'
+import NoteComponent from '../Note'
 
-import styles from './setInfo.module.scss'
+import styles from './set.module.scss'
 
-interface SetInfoProps {
+interface SetProps {
   set: Set;
 }
 
-const SetInfo: SFC<SetInfoProps> = ({
+const SetComponent: SFC<SetProps> = ({
   set: {
     name,
     description,
@@ -16,20 +16,20 @@ const SetInfo: SFC<SetInfoProps> = ({
     notes,
   },
 }) => (
-  <div className={styles.setInfo}>
+  <div className={styles.set}>
     <span className={styles.name}>{name}</span>
     <span>{description}</span>
     {
       subsets && subsets.map(subset => (
-        <SetInfo key={subset.name} set={subset} />
+        <SetComponent key={subset.name} set={subset} />
       ))
     }
     {
       notes && notes.map(note => (
-        <NoteInfo key={note.name} note={note} />
+        <NoteComponent key={note.name} note={note} />
       ))
     }
   </div>
 )
 
-export default SetInfo
+export default SetComponent

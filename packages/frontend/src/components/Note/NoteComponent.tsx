@@ -5,17 +5,17 @@ import SourceComponent from '../Source'
 
 import styles from './note.module.scss'
 
-interface NoteInfoProps {
+interface NoteProps {
   note: Note;
 }
 
-const NoteInfo: SFC<NoteInfoProps> = ({
+const NoteComponent: SFC<NoteProps> = ({
   note: {
     name,
     sources,
   },
 }) => (
-  <div className={styles.noteInfo}>
+  <div className={styles.note}>
     <span className={styles.name}>{name}</span>
     {
       sources && sources.map(source => (
@@ -25,4 +25,4 @@ const NoteInfo: SFC<NoteInfoProps> = ({
   </div>
 )
 
-export default NoteInfo
+export default NoteComponent

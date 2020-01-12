@@ -1,1 +1,1 @@
-export { default } from './SetInfo'
+export { default } from './SetComponent'

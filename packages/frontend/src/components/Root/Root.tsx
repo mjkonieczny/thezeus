@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Query } from 'react-apollo'
 
 import { Set } from '../../models'
-import SetInfo from '../Set'
+import SetComponent from '../Set'
 import { setNameSelector } from '../../store/set'
 
 // @ts-ignore
@@ -27,7 +27,7 @@ const Root: SFC = () => (
           <>
             {
               data.Set.map((set: Set) => (
-                <SetInfo key={set.name} set={set} />
+                <SetComponent key={set.name} set={set} />
               ))
             }
           </>
