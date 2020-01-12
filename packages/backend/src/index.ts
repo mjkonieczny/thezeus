@@ -25,6 +25,12 @@ const typeDefs = `
   type Note {
     name: String!
     text: String
+
+    sources: [Source] @relation(name: "DERIVED_FROM", direction: OUT)
+  }
+
+  type Source {
+    link: String!
   }
 `
 

@@ -13,8 +13,14 @@ import {
 
 import {
   CreateNote,
+  AddSource,
   // @ts-ignore
 } from '../schema/note.graphql'
+
+import {
+  CreateSource,
+  // @ts-ignore
+} from '../schema/source.graphql'
 
 const useInterpreter = (): (_: string) => void => {
   const [createSet] = useMutation(CreateSet)
@@ -23,6 +29,8 @@ const useInterpreter = (): (_: string) => void => {
   const [removeSubset] = useMutation(RemoveSubset)
   const [createNote] = useMutation(CreateNote)
   const [addNote] = useMutation(AddNote)
+  const [addSource] = useMutation(AddSource)
+  const [createSource] = useMutation(CreateSource)
 
   const dispatch = useDispatch()
 
@@ -47,6 +55,12 @@ const useInterpreter = (): (_: string) => void => {
         break
       case 'an':
         addNote({ variables: { from: first, to: second } })
+        break
+      case 'as':
+        addSource({ variables: { from: first, to: second } })
+        break
+      case 'cs':
+        createSource({ variables: { link: first } })
         break
       case 's':
         dispatch(searchSet(first))
