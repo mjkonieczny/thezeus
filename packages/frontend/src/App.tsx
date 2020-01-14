@@ -10,6 +10,9 @@ import createStore from './store'
 import Root from './components/Root'
 import Commander from './components/Commander'
 
+import './styles/main.scss'
+import styles from './app.module.scss'
+
 const store = createStore()
 
 const client = new ApolloClient({
@@ -19,8 +22,12 @@ const client = new ApolloClient({
 const App: SFC = () => (
   <Provider store={store}>
     <ApolloProvider client={client}>
-      <Root />
-      <Commander />
+      <div className={styles.app}>
+        <div>
+          <Root />
+        </div>
+        <Commander />
+      </div>
     </ApolloProvider>
   </Provider>
 )
