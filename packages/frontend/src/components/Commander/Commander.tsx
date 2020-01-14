@@ -1,7 +1,7 @@
 import React, {
   SFC, useState, ChangeEvent, FormEvent,
 } from 'react'
-import useInterpreter from '../../hooks/interpreter'
+import { useInterpreter } from '../../hooks'
 
 const Commander: SFC = () => {
   const [value, setValue] = useState('')

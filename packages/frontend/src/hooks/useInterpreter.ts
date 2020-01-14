@@ -22,7 +22,7 @@ import {
   // @ts-ignore
 } from '../schema/source.graphql'
 
-const useInterpreter = (): (_: string) => void => {
+export const useInterpreter = (): (_: string) => void => {
   const [createSet] = useMutation(CreateSet)
   const [deleteSet] = useMutation(DeleteSet)
   const [addSubset] = useMutation(AddSubset)
@@ -72,5 +72,3 @@ const useInterpreter = (): (_: string) => void => {
     }
   }
 }
-
-export default useInterpreter
