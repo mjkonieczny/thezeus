@@ -4,7 +4,7 @@ import React, { SFC } from 'react'
 import { Set } from '../../models'
 import NoteComponent from '../Note'
 
-import { useModal } from '../../hooks'
+import { useSetEditor } from '../../hooks'
 
 import styles from './set.module.scss'
 
@@ -13,22 +13,22 @@ interface SetProps {
 }
 
 const SetComponent: SFC<SetProps> = ({
-  set: {
+  set,
+}) => {
+  const {
     name,
     description,
     subsets,
     notes,
-  },
-}) => {
-  const { setOpen, Modal } = useModal()
+  } = set
+
+  const { openEditor, SetEditor } = useSetEditor(set)
 
   return (
     <>
-      <Modal>
-        <span>{name}</span>
-      </Modal>
+      <SetEditor />
       <div className={styles.set}>
-        <span className={styles.name} onClick={() => setOpen(true)}>{name}</span>
+        <span className={styles.name} onClick={openEditor}>{name}</span>
         <span>{description}</span>
         {
           subsets && subsets.map(subset => (

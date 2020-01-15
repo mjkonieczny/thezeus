@@ -20,6 +20,13 @@ mutation CreateSet($name: String!) {
   }
 }
 
+mutation UpdateSet($name: String!, $description: String) {
+  UpdateSet(name: $name, description: $description) {
+    name
+    description
+  }
+}
+
 mutation DeleteSet($name: String!) {
   DeleteSet(name: $name) {
     name
