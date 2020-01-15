@@ -6,6 +6,8 @@ import { useModal } from '..'
 // @ts-ignore
 import { UpdateSet } from '../../schema/set.graphql'
 
+import styles from './useSetEditor.module.scss'
+
 interface UseSetEditor {
   openEditor: () => void;
   SetEditor: SFC;
@@ -17,15 +19,25 @@ export const useSetEditor = ({ name, description }: Set): UseSetEditor => {
   return {
     openEditor: () => setOpen(true),
     SetEditor: () => {
-      const [value, setValue] = useState(description)
+      const [value, setValue] = useState(description || '')
       const [updateSet] = useMutation(UpdateSet)
 
-      useEffect(() => () => updateSet({ variables: { name, description: value } }))
+      useEffect(() => () => {
+        if (description !== value) {
+          updateSet({ variables: { name, description: value } })
+        }
+      })
 
       return (
         <Modal>
-          <span>{name}</span>
-          <textarea value={value} onChange={e => setValue(e.target.value)} />
+          <div className={styles.set}>
+            <span className={styles.name}>{name}</span>
+            <textarea
+              className={styles.description}
+              value={value}
+              onChange={e => setValue(e.target.value)}
+            />
+          </div>
         </Modal>
       )
     },
