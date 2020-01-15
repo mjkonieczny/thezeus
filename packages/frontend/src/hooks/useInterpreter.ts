@@ -1,6 +1,5 @@
 import { useMutation } from '@apollo/react-hooks'
-import { useDispatch } from 'react-redux'
-import { searchSet } from '../store/set/actions'
+import { useHistory } from 'react-router'
 
 import {
   CreateSet,
@@ -32,10 +31,10 @@ export const useInterpreter = (): (_: string) => void => {
   const [addSource] = useMutation(AddSource)
   const [createSource] = useMutation(CreateSource)
 
-  const dispatch = useDispatch()
+  const history = useHistory()
 
   return (value: string) => {
-    const [command, first, second] = value.split(' ')
+    const [command, first, second] = value.split('/')
 
     switch (command) {
       case 'cv':
@@ -62,8 +61,8 @@ export const useInterpreter = (): (_: string) => void => {
       case 'cs':
         createSource({ variables: { link: first } })
         break
-      case 's':
-        dispatch(searchSet(first))
+      case 'set':
+        history.push(`/set/${first}`)
         break
 
       default:

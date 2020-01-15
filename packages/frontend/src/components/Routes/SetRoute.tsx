@@ -1,10 +1,9 @@
 import React, { SFC } from 'react'
-import { useSelector } from 'react-redux'
 import { Query } from 'react-apollo'
 
+import { useParams } from 'react-router'
 import { Set } from '../../models'
 import SetComponent from '../Set'
-import { setNameSelector } from '../../store/set'
 
 // @ts-ignore
 import { Set as SetQuery } from '../../schema/set.graphql'
@@ -17,9 +16,12 @@ interface Data {
   Set: Set[];
 }
 
-export const SetRoute: SFC = () => (
-  <Query<Data, Params> query={SetQuery} variables={{ name: useSelector(setNameSelector) }}>
-    {
+export const SetRoute: SFC = () => {
+  const { name } = useParams()
+
+  return (
+    <Query<Data, Params> query={SetQuery} variables={{ name }}>
+      {
       ({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>
         if (error) return <p>Error :</p>
@@ -34,5 +36,6 @@ export const SetRoute: SFC = () => (
         )
       }
     }
-  </Query>
-)
+    </Query>
+  )
+}
