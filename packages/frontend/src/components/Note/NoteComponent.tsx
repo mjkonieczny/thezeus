@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { SFC } from 'react'
 import { Note } from '../../models'
+import { useNoteEditor } from '../../hooks'
 
 import SourceComponent from '../Source'
 
@@ -10,19 +13,28 @@ interface NoteProps {
 }
 
 const NoteComponent: SFC<NoteProps> = ({
-  note: {
+  note,
+}) => {
+  const {
     name,
     sources,
-  },
-}) => (
-  <div className={styles.note}>
-    <span className={styles.name}>{name}</span>
-    {
+  } = note
+
+  const { openEditor, NoteEditor } = useNoteEditor(note)
+
+  return (
+    <>
+      <NoteEditor />
+      <div className={styles.note}>
+        <span className={styles.name} onClick={openEditor}>{name}</span>
+        {
       sources && sources.map(source => (
         <SourceComponent key={source.link} source={source} />
       ))
     }
-  </div>
-)
+      </div>
+    </>
+  )
+}
 
 export default NoteComponent

@@ -26,7 +26,7 @@ export const useSetEditor = ({ name, description }: Set): UseSetEditor => {
         if (description !== value) {
           updateSet({ variables: { name, description: value } })
         }
-      })
+      }, [updateSet, value])
 
       return (
         <Modal>

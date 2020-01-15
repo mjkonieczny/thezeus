@@ -4,6 +4,13 @@ mutation CreateNote($name: String!) {
   }
 }
 
+mutation UpdateNote($name: String!, $text: String) {
+  UpdateNote(name: $name, text: $text) {
+    name
+    text
+  }
+}
+
 mutation AddSource($from: String!, $to: String!) {
   AddNoteSources(from: { name: $from }, to: { link: $to }) {
     from {
