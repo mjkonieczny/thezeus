@@ -3,6 +3,8 @@ import React, {
 } from 'react'
 import { useInterpreter } from '../../hooks'
 
+import styles from './commander.module.scss'
+
 const Commander: SFC = () => {
   const [value, setValue] = useState('')
   const interpreter = useInterpreter()
@@ -16,7 +18,7 @@ const Commander: SFC = () => {
   }
 
   return (
-    <form onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={onSubmit}>
       <input value={value} onChange={onChange} />
     </form>
   )
