@@ -1,5 +1,8 @@
 import { hot } from 'react-hot-loader'
 import React, { SFC } from 'react'
+import { Router, Switch, Route } from 'react-router'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { createBrowserHistory } from 'history'
 
 import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
@@ -7,7 +10,7 @@ import ApolloClient from 'apollo-boost'
 import { Provider } from 'react-redux'
 import createStore from './store'
 
-import Root from './components/Root'
+import { SetRoute } from './components/Routes'
 import Commander from './components/Commander'
 
 import './styles/main.scss'
@@ -22,12 +25,16 @@ const client = new ApolloClient({
 const App: SFC = () => (
   <Provider store={store}>
     <ApolloProvider client={client}>
-      <div className={styles.app}>
-        <div>
-          <Root />
+      <Router history={createBrowserHistory()}>
+        <div className={styles.app}>
+          <div>
+            <Switch>
+              <Route path="/"><SetRoute /></Route>
+            </Switch>
+          </div>
+          <Commander />
         </div>
-        <Commander />
-      </div>
+      </Router>
     </ApolloProvider>
   </Provider>
 )

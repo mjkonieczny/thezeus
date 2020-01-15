@@ -17,7 +17,7 @@ interface Data {
   Set: Set[];
 }
 
-const Root: SFC = () => (
+export const SetRoute: SFC = () => (
   <Query<Data, Params> query={SetQuery} variables={{ name: useSelector(setNameSelector) }}>
     {
       ({ loading, error, data }) => {
@@ -36,5 +36,3 @@ const Root: SFC = () => (
     }
   </Query>
 )
-
-export default Root
