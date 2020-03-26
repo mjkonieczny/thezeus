@@ -57,7 +57,8 @@ module.exports = {
         presets: ['@babel/preset-typescript'],
       },
       html: {
-        title: 'frontend'
+        title: 'Thezeus',
+        favicon: 'public/favicon.svg',
       },
       style: {
         test: /\.scss$/,
