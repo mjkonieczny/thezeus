@@ -14,23 +14,11 @@ app.use(cors({ allowedHeaders: '*' }))
 app.use(bodyParser.json())
 
 const typeDefs = `
-  type Set {
-    name: String!
-    description: String
-
-    subsets: [Set] @relation(name: "IS_SUBSET_OF", direction: IN)
-    notes: [Note] @relation(name: "DESCRIBES", direction: IN)
-  }
-
-  type Note {
-    name: String!
+  type Node {
+    id: ID!
     text: String
 
-    sources: [Source] @relation(name: "DERIVED_FROM", direction: OUT)
-  }
-
-  type Source {
-    link: String!
+    adjacents: [Node] @relation(name: "RELATES_TO", direction: IN)
   }
 `
 

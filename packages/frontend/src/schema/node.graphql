@@ -1,0 +1,30 @@
+query Node($id: ID!) {
+  Node(id: $id) {
+    id
+    text
+    adjacents {
+      text
+    }
+  }
+}
+
+mutation CreateNode($id: ID!, $text: String) {
+  CreateNode(id: $id, text: $text) {
+    id
+    text
+  }
+}
+
+mutation UpdateNode($id: ID!, $text: String) {
+  UpdateNode(id: $id, text: $text) {
+    id
+    text
+  }
+}
+
+
+mutation DeleteNode($id: ID!) {
+  DeleteNode(id: $id) {
+    id
+  }
+}

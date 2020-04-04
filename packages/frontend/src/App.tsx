@@ -7,36 +7,29 @@ import { createBrowserHistory } from 'history'
 import { ApolloProvider } from '@apollo/react-hooks'
 import ApolloClient from 'apollo-boost'
 
-import { Provider } from 'react-redux'
-import createStore from './store'
-
-import { SetRoute } from './components/Routes'
+import { Node } from './components/Routes'
 import Commander from './components/Commander'
 
 import './styles/main.scss'
 import styles from './app.module.scss'
-
-const store = createStore()
 
 const client = new ApolloClient({
   uri: 'http://localhost:3001/graphql',
 })
 
 const App: SFC = () => (
-  <Provider store={store}>
-    <ApolloProvider client={client}>
-      <Router history={createBrowserHistory()}>
-        <div className={styles.app}>
-          <div>
-            <Switch>
-              <Route path="/set/:name"><SetRoute /></Route>
-            </Switch>
-          </div>
-          <Commander />
+  <ApolloProvider client={client}>
+    <Router history={createBrowserHistory()}>
+      <div className={styles.app}>
+        <div>
+          <Switch>
+            <Route path="/node/:id"><Node /></Route>
+          </Switch>
         </div>
-      </Router>
-    </ApolloProvider>
-  </Provider>
+        <Commander />
+      </div>
+    </Router>
+  </ApolloProvider>
 )
 
 export default hot(module)(App)
