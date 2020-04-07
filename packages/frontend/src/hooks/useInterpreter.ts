@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/react-hooks'
 import { useHistory } from 'react-router'
+import uuid from 'uuid/v4'
 
 import {
   CreateNode,
@@ -18,10 +19,10 @@ export const useInterpreter = (): (_: string) => void => {
 
     switch (command) {
       case 'cv':
-        createNode({ variables: { id: first, text: second } })
+        createNode({ variables: { id: uuid(), text: first, description: second } })
         break
       case 'dv':
-        deleteNode({ variables: { id: first } })
+        deleteNode({ variables: { text: first } })
         break
       case 'node':
         history.push(`/node/${first}`)

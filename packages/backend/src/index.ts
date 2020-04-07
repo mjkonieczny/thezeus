@@ -16,7 +16,8 @@ app.use(bodyParser.json())
 const typeDefs = `
   type Node {
     id: ID!
-    text: String
+    text: String!
+    description: String
 
     adjacents: [Node] @relation(name: "RELATES_TO", direction: IN)
   }
