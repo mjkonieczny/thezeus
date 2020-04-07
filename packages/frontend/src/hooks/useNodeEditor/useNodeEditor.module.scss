@@ -1,11 +1,7 @@
-.note {
+.node {
   display: flex;
   flex-direction: column;
   height: 100%;
-
-  .name {
-    margin: 5px;
-  }
 
   .text {
     flex: 1;
@@ -13,4 +9,3 @@
     resize: none;
   }
 }
-

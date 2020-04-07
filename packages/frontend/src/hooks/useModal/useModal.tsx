@@ -3,25 +3,19 @@ import { Modal } from '@material-ui/core'
 
 import styles from './useModal.module.scss'
 
-interface UseModal {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  Modal: SFC;
-}
+type UseModal = [React.Dispatch<React.SetStateAction<boolean>>, SFC]
 
 export const useModal = (): UseModal => {
   const [isOpen, setOpen] = useState(false)
 
-  return {
+  return [
     setOpen,
-    Modal: ({ children }) => (
-      <Modal
-        open={isOpen}
-        onClose={() => setOpen(false)}
-      >
+    ({ children }) => (
+      <Modal open={isOpen} onClose={() => setOpen(false)}>
         <div className={styles.modal}>
           {children}
         </div>
       </Modal>
     ),
-  }
+  ]
 }

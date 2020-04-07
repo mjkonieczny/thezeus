@@ -1,4 +1,3 @@
 export { useModal } from './useModal'
-export { useSetEditor } from './useSetEditor'
-export { useNoteEditor } from './useNoteEditor'
+export { useNodeEditor } from './useNodeEditor'
 export { useInterpreter } from './useInterpreter'

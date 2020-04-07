@@ -1,5 +1,0 @@
-mutation CreateSource($link: String!) {
-  CreateSource(link: $link) {
-    link
-  }
-}

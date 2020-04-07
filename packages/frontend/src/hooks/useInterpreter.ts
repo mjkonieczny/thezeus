@@ -2,34 +2,14 @@ import { useMutation } from '@apollo/react-hooks'
 import { useHistory } from 'react-router'
 
 import {
-  CreateSet,
-  DeleteSet,
-  AddSubset,
-  RemoveSubset,
-  AddNote,
-  // @ts-ignore
-} from '../schema/set.graphql'
-
-import {
-  CreateNote,
-  AddSource,
-  // @ts-ignore
-} from '../schema/note.graphql'
-
-import {
-  CreateSource,
-  // @ts-ignore
-} from '../schema/source.graphql'
+  CreateNode,
+  DeleteNode,
+// @ts-ignore
+} from '../schema/node.graphql'
 
 export const useInterpreter = (): (_: string) => void => {
-  const [createSet] = useMutation(CreateSet)
-  const [deleteSet] = useMutation(DeleteSet)
-  const [addSubset] = useMutation(AddSubset)
-  const [removeSubset] = useMutation(RemoveSubset)
-  const [createNote] = useMutation(CreateNote)
-  const [addNote] = useMutation(AddNote)
-  const [addSource] = useMutation(AddSource)
-  const [createSource] = useMutation(CreateSource)
+  const [createNode] = useMutation(CreateNode)
+  const [deleteNode] = useMutation(DeleteNode)
 
   const history = useHistory()
 
@@ -38,31 +18,13 @@ export const useInterpreter = (): (_: string) => void => {
 
     switch (command) {
       case 'cv':
-        createSet({ variables: { name: first } })
+        createNode({ variables: { id: first, text: second } })
         break
       case 'dv':
-        deleteSet({ variables: { name: first } })
+        deleteNode({ variables: { id: first } })
         break
-      case 'ae':
-        addSubset({ variables: { from: first, to: second } })
-        break
-      case 're':
-        removeSubset({ variables: { from: first, to: second } })
-        break
-      case 'cn':
-        createNote({ variables: { name: first } })
-        break
-      case 'an':
-        addNote({ variables: { from: first, to: second } })
-        break
-      case 'as':
-        addSource({ variables: { from: first, to: second } })
-        break
-      case 'cs':
-        createSource({ variables: { link: first } })
-        break
-      case 'set':
-        history.push(`/set/${first}`)
+      case 'node':
+        history.push(`/node/${first}`)
         break
 
       default:
