@@ -1,3 +1,15 @@
+query AllNodes {
+  Node {
+    id
+    text
+    description
+    adjacents {
+      text
+      description
+    }
+  }
+}
+
 query Node($text: String!) {
   Node(text: $text) {
     id

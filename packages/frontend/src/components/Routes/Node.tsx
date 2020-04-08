@@ -5,8 +5,9 @@ import { useParams } from 'react-router'
 import { Node as NodeModel } from '../../models'
 import { Node as NodeComponent } from '../Node'
 
-// @ts-ignore
-import { Node as NodeQuery } from '../../schema/node.graphql'
+interface NodeParams {
+  query: any,
+}
 
 interface Params {
   text: string;
@@ -16,11 +17,13 @@ interface Data {
   Node: NodeModel[];
 }
 
-export const Node: SFC = () => {
+export const Node: SFC<NodeParams> = ({
+  query,
+}) => {
   const { text } = useParams()
 
   return (
-    <Query<Data, Params> query={NodeQuery} variables={{ text }}>
+    <Query<Data, Params> query={query} variables={{ text }}>
       {
       ({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>
