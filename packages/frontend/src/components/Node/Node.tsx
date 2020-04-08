@@ -21,7 +21,7 @@ const NodeComponent: SFC<NodeProps> = ({
 
   return (
     <div className={styles.node}>
-      <span className={styles.name} onClick={() => history.push(text)}>{text}</span>
+      <span className={styles.name} onClick={() => history.push(escape(text))}>{text}</span>
       {
         adjacents && adjacents.map(adj => (
           <Node key={adj.id} node={adj} />

@@ -23,7 +23,7 @@ export const Node: SFC<NodeParams> = ({
   const { text } = useParams()
 
   return (
-    <Query<Data, Params> query={query} variables={{ text }}>
+    <Query<Data, Params> query={query} variables={{ text: unescape(text) }}>
       {
       ({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>
