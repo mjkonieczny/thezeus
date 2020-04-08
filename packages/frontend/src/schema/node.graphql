@@ -1,9 +1,10 @@
-query Node($id: ID!) {
-  Node(id: $id) {
+query Node($text: String!) {
+  Node(text: $text) {
     id
     text
     description
     adjacents {
+      text
       description
     }
   }

@@ -23,7 +23,7 @@ const App: SFC = () => (
       <div className={styles.app}>
         <div>
           <Switch>
-            <Route path="/node/:id"><Node /></Route>
+            <Route path="/:text"><Node /></Route>
           </Switch>
         </div>
         <Commander />
