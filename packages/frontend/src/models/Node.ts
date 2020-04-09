@@ -2,5 +2,6 @@ export interface Node {
   id: string;
   text: string;
 
-  adjacents: Node[];
+  children: Node[];
+  parents: Node[];
 }

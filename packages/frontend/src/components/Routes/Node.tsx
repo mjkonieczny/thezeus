@@ -6,7 +6,7 @@ import { Node as NodeModel } from '../../models'
 import { Node as NodeComponent } from '../Node'
 
 interface NodeParams {
-  query: any,
+  query: any;
 }
 
 interface Params {

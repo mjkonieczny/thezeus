@@ -3,7 +3,13 @@ query AllNodes {
     id
     text
     description
-    adjacents {
+    children {
+      id
+      text
+      description
+    }
+    parents {
+      id
       text
       description
     }
@@ -15,7 +21,13 @@ query Node($text: String!) {
     id
     text
     description
-    adjacents {
+    children {
+      id
+      text
+      description
+    }
+    parents {
+      id
       text
       description
     }
@@ -38,6 +50,16 @@ mutation UpdateNode($id: ID!, $text: String, $description: String) {
   }
 }
 
+mutation AddChild($from: ID!, $to: ID!) {
+  AddNodeChildren(from: { id: $from }, to: { id: $to }) {
+    from {
+      id
+    }
+    to {
+      id
+    }
+  }
+}
 
 mutation DeleteNode($id: ID!) {
   DeleteNode(id: $id) {

@@ -16,16 +16,36 @@ const NodeComponent: SFC<NodeProps> = ({
 }) => {
   const {
     text,
-    adjacents,
+    children,
+    parents,
   } = node
 
   return (
     <div className={styles.node}>
       <span className={styles.name} onClick={() => history.push(escape(text))}>{text}</span>
       {
-        adjacents && adjacents.map(adj => (
-          <Node key={adj.id} node={adj} />
-        ))
+        children && children.length > 0 && (
+          <>
+            <div>children</div>
+            {
+              children.map(child => (
+                <Node key={child.id} node={child} />
+              ))
+            }
+          </>
+        )
+      }
+      {
+        parents && parents.length > 0 && (
+          <>
+            <div>parents</div>
+            {
+              parents.map(parent => (
+                <Node key={parent.id} node={parent} />
+              ))
+            }
+          </>
+        )
       }
     </div>
   )

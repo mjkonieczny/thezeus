@@ -5,12 +5,14 @@ import uuid from 'uuid/v4'
 import {
   CreateNode,
   DeleteNode,
+  AddChild,
 // @ts-ignore
 } from '../schema/node.graphql'
 
 export const useInterpreter = (): (_: string) => void => {
   const [createNode] = useMutation(CreateNode)
   const [deleteNode] = useMutation(DeleteNode)
+  const [addChild] = useMutation(AddChild)
 
   const history = useHistory()
 
@@ -22,7 +24,10 @@ export const useInterpreter = (): (_: string) => void => {
         createNode({ variables: { id: uuid(), text: first, description: second } })
         break
       case 'dv':
-        deleteNode({ variables: { text: first } })
+        deleteNode({ variables: { id: first } })
+        break
+      case 'ac':
+        addChild({variables: { from: first, to: second }})
         break
       case 'node':
         history.push(`/node/${first}`)
