@@ -50,6 +50,16 @@ mutation UpdateNode($id: ID!, $text: String, $description: String) {
   }
 }
 
+mutation AddChild($from: ID!, $to: ID!) {
+  AddNodeChildren(from: { id: $from }, to: { id: $to }) {
+    from {
+      id
+    }
+    to {
+      id
+    }
+  }
+}
 
 mutation DeleteNode($id: ID!) {
   DeleteNode(id: $id) {
