@@ -10,6 +10,12 @@ import ApolloClient from 'apollo-boost'
 import { Node } from './components/Routes'
 import Commander from './components/Commander'
 
+import {
+  AllNodes as AllNodesQuery,
+  Node as NodeQuery
+// @ts-ignore
+} from './schema/node.graphql'
+
 import './styles/main.scss'
 import styles from './app.module.scss'
 
@@ -23,7 +29,8 @@ const App: SFC = () => (
       <div className={styles.app}>
         <div>
           <Switch>
-            <Route path="/node/:id"><Node /></Route>
+            <Route exact path="/"><Node query={AllNodesQuery}/></Route>
+            <Route exact path="/:text"><Node query={NodeQuery}/></Route>
           </Switch>
         </div>
         <Commander />
