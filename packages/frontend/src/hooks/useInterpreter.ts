@@ -22,7 +22,7 @@ export const useInterpreter = (): (_: string) => void => {
         createNode({ variables: { id: uuid(), text: first, description: second } })
         break
       case 'dv':
-        deleteNode({ variables: { text: first } })
+        deleteNode({ variables: { id: first } })
         break
       case 'node':
         history.push(`/node/${first}`)
