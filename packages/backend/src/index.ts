@@ -19,7 +19,8 @@ const typeDefs = `
     text: String!
     description: String
 
-    adjacents: [Node] @relation(name: "RELATES_TO", direction: IN)
+    children: [Node] @relation(name: "RELATES_TO", direction: IN)
+    parents: [Node] @relation(name: "RELATES_TO", direction: OUT)
   }
 `
 

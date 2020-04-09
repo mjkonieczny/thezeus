@@ -3,7 +3,13 @@ query AllNodes {
     id
     text
     description
-    adjacents {
+    children {
+      id
+      text
+      description
+    }
+    parents {
+      id
       text
       description
     }
@@ -15,7 +21,13 @@ query Node($text: String!) {
     id
     text
     description
-    adjacents {
+    children {
+      id
+      text
+      description
+    }
+    parents {
+      id
       text
       description
     }
