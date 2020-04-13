@@ -2,17 +2,6 @@ query AllNodes {
   Node {
     id
     text
-    description
-    children {
-      id
-      text
-      description
-    }
-    parents {
-      id
-      text
-      description
-    }
   }
 }
 

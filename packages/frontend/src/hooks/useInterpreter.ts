@@ -27,7 +27,7 @@ export const useInterpreter = (): (_: string) => void => {
         deleteNode({ variables: { id: first } })
         break
       case 'ac':
-        addChild({variables: { from: first, to: second }})
+        addChild({ variables: { from: first, to: second } })
         break
       case 'node':
         history.push(`/node/${first}`)
