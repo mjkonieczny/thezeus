@@ -24,7 +24,7 @@ const App: SFC = () => (
         <div>
           <Switch>
             <Route exact path="/"><Dashboard /></Route>
-            <Route exact path="/:text"><Node /></Route>
+            <Route exact path="/node/:id"><Node /></Route>
           </Switch>
         </div>
         <Commander />

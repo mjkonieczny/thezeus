@@ -5,8 +5,8 @@ query AllNodes {
   }
 }
 
-query Node($text: String!) {
-  Node(text: $text) {
+query Node($id: ID!) {
+  Node(id: $id) {
     id
     text
     description

@@ -15,6 +15,7 @@ const NodeComponent: SFC<NodeProps> = ({
   history,
 }) => {
   const {
+    id,
     text,
     children,
     parents,
@@ -22,7 +23,7 @@ const NodeComponent: SFC<NodeProps> = ({
 
   return (
     <div className={styles.node}>
-      <span className={styles.name} onClick={() => history.push(escape(text))}>{text}</span>
+      <span className={styles.name} onClick={() => history.push(`/node/${escape(id)}`)}>{text}</span>
       {
         children && children.length > 0 && (
           <>

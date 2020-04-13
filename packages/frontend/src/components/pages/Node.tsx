@@ -9,7 +9,7 @@ import { Node as NodeComponent } from '../Node'
 import { Node as NodeQuery } from '../../schema/node.graphql'
 
 interface Params {
-  text: string;
+  id: string;
 }
 
 interface Data {
@@ -17,10 +17,10 @@ interface Data {
 }
 
 export const Node: SFC = () => {
-  const { text } = useParams()
+  const { id } = useParams()
 
   return (
-    <Query<Data, Params> query={NodeQuery} variables={{ text: unescape(text) }}>
+    <Query<Data, Params> query={NodeQuery} variables={{ id: unescape(id) }}>
       {
       ({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>
